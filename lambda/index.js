@@ -40,8 +40,10 @@ const sumarIntentHandler = {
         var resultadoSuma = NumSumA + NumSumB;
         //const speakOutput = `El resultado de la suma es ${resultadoSuma}` ;
         
-        var speakOutput; // = `${resultadoSuma}`; 
+        var speakOutput; // = `${resultadoSuma}`;  //AQUI SE DEFINE LA VARIABLE DE RESPUESTA
         
+        
+        //AQUI VA LA RUTINA DE COMPARACION
         if (ResSum === resultadoSuma){
              speakOutput = `Correcto`;
         }else{
@@ -76,10 +78,21 @@ const restarIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'restarIntent';
     },
     handle(handlerInput){
-        const NumResA = handlerInput.requestEnvelope.request.intent.slots.numResA.value;
-        const NumResB = handlerInput.requestEnvelope.request.intent.slots.numResB.value;
-        const resultadoResta = parseInt(NumResA,10) - parseInt(NumResB,10);
-        const speakOutput = `El resultado de la resta es ${resultadoResta}`;
+        const NumResA = Number(handlerInput.requestEnvelope.request.intent.slots.numResA.value);
+        const NumResB = Number(handlerInput.requestEnvelope.request.intent.slots.numResB.value);
+        const ResRes = Number(handlerInput.requestEnvelope.request.intent.slots.resRes.value);
+        
+        const resultadoResta = NumResA - NumResB;           //aqui se hace la operacion real
+        //Se define la variable de respuesta 
+        let speakOutput; // = `El resultado de la resta es ${resultadoResta}`;
+        
+        //AQUI VA LA RUTINA DE COMPARACION
+        
+        if (ResRes === resultadoResta){
+             speakOutput = `Correcto`;
+        }else{
+             speakOutput = `Incorrecto, el resultado correcto es ${resultadoResta}` ;
+        }       
         
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -103,10 +116,20 @@ const multiplicarIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'multiplicarIntent'
     },
     handle(handlerInput){
-        const NumMultA = handlerInput.requestEnvelope.request.intent.slots.numMultA.value;
-        const NumMultB = handlerInput.requestEnvelope.request.intent.slots.numMultB.value;
-        const resultadoMult = parseInt(NumMultA, 10) * parseInt(NumMultB,10);
-        const speakOutput = `El resultado de la multiplicacion es ${resultadoMult}`;
+        const NumMultA = Number(handlerInput.requestEnvelope.request.intent.slots.numMultA.value);
+        const NumMultB = Number(handlerInput.requestEnvelope.request.intent.slots.numMultB.value);
+        const ResMult = Number(handlerInput.requestEnvelope.request.intent.slots.resMult.value);
+        const resultadoMult = NumMultA * NumMultB;
+        
+        let speakOutput; /// Se define la variable para respuesta
+        
+        //Aqui va la ruina de comparacion
+        if (ResMult === resultadoMult){
+             speakOutput = `Correcto`;
+        }else{
+             speakOutput = `Incorrecto, el resultado correcto es ${resultadoMult}` ;
+        }       
+        
         
         return handlerInput.responseBuilder
             .speak(speakOutput)
@@ -133,10 +156,19 @@ const dividirIntentHandler = {
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'dividirIntent'
     },
     handle(handlerInput){
-        const NumDivA = handlerInput.requestEnvelope.request.intent.slots.numDivA.value;
-        const NumDivB = handlerInput.requestEnvelope.request.intent.slots.numDivB.value;
-        const resultadoDiv = parseInt(NumDivA, 10) / parseInt(NumDivB,10);
-        const speakOutput = `El resultado de la division es ${resultadoDiv}`;
+        const NumDivA = Number(handlerInput.requestEnvelope.request.intent.slots.numDivA.value);
+        const NumDivB = Number(handlerInput.requestEnvelope.request.intent.slots.numDivB.value);
+        const ResDiv = Number(handlerInput.requestEnvelope.request.intent.slots.resDiv.value);
+        const resultadoDiv = NumDivA / NumDivB;
+        let speakOutput;  //Se declara la variable de respuesta
+        
+        //Aqui va la ruina de comparacion
+        if (ResDiv === resultadoDiv){
+             speakOutput = `Correcto`;
+        }else{
+             speakOutput = `Incorrecto, el resultado correcto es ${resultadoDiv}` ;
+        }    
+        
         
         return handlerInput.responseBuilder
             .speak(speakOutput)
